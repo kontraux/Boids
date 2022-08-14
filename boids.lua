@@ -25,25 +25,25 @@ function boids.new()
 
     -- Rule 1: compete for the center of the flock
     function flock:rule1()
-        local averageX = 0
-        local averageY = 0
+        local average_x = 0
+        local average_y = 0
         for member = 1, #flock do
-            averageX = averageX + flock[member].position.x
-            averageY = averageY + flock[member].position.y
+            average_x = average_x + flock[member].position.x
+            average_y = average_y + flock[member].position.y
         end
-        averageX = averageX / #flock
-        averageY = averageY / #flock
+        average_x = average_x / #flock
+        average_y = average_y / #flock
         for member = 1, #flock do
-            if flock[member].position.x > averageX then
+            if flock[member].position.x > average_x then
                 flock[member].v[1].x = flock[member].v[1].x - dt
             end
-            if flock[member].position.x < averageX then
+            if flock[member].position.x < average_x then
                 flock[member].v[1].x = flock[member].v[1].x + dt
             end
-            if flock[member].position.y > averageY then
+            if flock[member].position.y > average_y then
                 flock[member].v[1].y = flock[member].v[1].y - dt
             end
-            if flock[member].position.y < averageY then
+            if flock[member].position.y < average_y then
                 flock[member].v[1].y = flock[member].v[1].y + dt
             end
         end
@@ -52,20 +52,20 @@ function boids.new()
 
     -- Rule 2: try to match the speed of the flock
     function flock:rule2()
-        local averageX = 0
-        local averageY = 0
+        local average_x = 0
+        local average_y = 0
         for member = 1, #flock do
             for i, vec in pairs(flock[member].v) do
-                averageX = averageX + vec.x
+                average_x = average_x + vec.x
             end
             for i, vec in pairs(flock[member].v) do
-                averageY = averageY + vec.y
+                average_y = average_y + vec.y
             end
         end
-        averageX, averageY = averageX / #flock, averageY / #flock
+        average_x, average_y = average_x / #flock, average_y / #flock
         for member = 1, #flock do
-            flock[member].v[2].x = averageX / 5
-            flock[member].v[2].y = averageY / 5
+            flock[member].v[2].x = average_x / 5
+            flock[member].v[2].y = average_y / 5
         end
     end
 

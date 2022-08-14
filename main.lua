@@ -33,8 +33,8 @@ local center_x = love.graphics.getWidth() / 2
 local center_y = love.graphics.getHeight() / 2
 local font = love.graphics.newFont(24)
 love.graphics.setFont(font)
-local offsetw = font:getWidth(text) / 2
-local offseth = font:getHeight() / 2
+local offset_w = font:getWidth(text) / 2
+local offset_h = font:getHeight() / 2
 
 function love.draw()
     if simulation_running then
@@ -44,6 +44,6 @@ function love.draw()
             love.graphics.circle("fill", v.position.x, v.position.y, 5)
         end
     else
-        love.graphics.print("Press spacebar to begin.", center_x - offsetw, center_y - offseth)
+        love.graphics.print("Press spacebar to begin.", center_x - offset_w, center_y - offset_h)
     end
 end
